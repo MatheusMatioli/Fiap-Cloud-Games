@@ -1,5 +1,8 @@
+using FIAP.CloudGames.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace FIAP.CloudGames.Infrastructure.Data.EF.Mappings;
 
 public class MapeamentoCategoria : IEntityTypeConfiguration<Categoria>
 {

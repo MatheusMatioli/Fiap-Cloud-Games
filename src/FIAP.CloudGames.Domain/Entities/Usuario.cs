@@ -1,9 +1,12 @@
 using System;
 
-namespace FIAP.CloudGames.Domain.Entities;
+namespace FIAP.CloudGames.Domain.Users;
 
 public sealed class Usuario
 {
+    public const int TamanhoMaximoNome = 100;
+    public const int TamanhoMaximoEmail = 150;
+
     public Guid Id { get; private set; }
     public string Nome { get; private set; }
     public string CPF { get; private set; }
@@ -54,5 +57,32 @@ public sealed class Usuario
         Ativo = true;
         CriadoEmUtc = DateTimeOffset.UtcNow;
         DataInativacao = null;
+    }
+
+    public Usuario(Guid id, string nome, string email, DateTimeOffset criadoEmUtc)
+    {
+        if (id == Guid.Empty)
+            throw new ArgumentException("O identificador do usuário não pode ser vazio.", nameof(id));
+
+        ArgumentException.ThrowIfNullOrWhiteSpace(nome);
+        ArgumentException.ThrowIfNullOrWhiteSpace(email);
+
+        if (nome.Length > TamanhoMaximoNome)
+            throw new ArgumentOutOfRangeException(nameof(nome));
+
+        if (email.Length > TamanhoMaximoEmail)
+            throw new ArgumentOutOfRangeException(nameof(email));
+
+        if (criadoEmUtc.Offset != TimeSpan.Zero)
+            throw new ArgumentException("A data de criação deve estar em UTC.", nameof(criadoEmUtc));
+
+        Id = id;
+        Nome = nome;
+        CPF = string.Empty;
+        Email = email;
+        SenhaHash = string.Empty;
+        PerfilId = string.Empty;
+        Ativo = true;
+        CriadoEmUtc = criadoEmUtc;
     }
 }
