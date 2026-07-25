@@ -1,6 +1,6 @@
-using FIAP.CloudGames.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using FIAP.CloudGames.Domain.Entities;
 
 namespace FIAP.CloudGames.Infrastructure.Data.EF.Mappings;
 
@@ -21,18 +21,49 @@ internal sealed class MapeamentoUsuario : IEntityTypeConfiguration<Usuario>
 
         construtor.Property(usuario => usuario.Nome)
             .HasColumnName("nome")
-            .HasMaxLength(Usuario.TamanhoMaximoNome)
+            .HasMaxLength(100)
+            .IsRequired();
+
+        construtor.Property(usuario => usuario.CPF)
+            .HasColumnName("cpf")
+            .HasMaxLength(100)
+            .IsRequired();
+
+        construtor.Property(usuario => usuario.DataNascimento)
+            .HasColumnName("data_nascimento")
+            .HasColumnType("timestamp with time zone")
             .IsRequired();
 
         construtor.Property(usuario => usuario.Email)
             .HasColumnName("email")
-            .HasMaxLength(Usuario.TamanhoMaximoEmail)
+            .HasMaxLength(150)
+            .IsRequired();
+
+        construtor.Property(usuario => usuario.SenhaHash)
+            .HasColumnName("senha_hash")
+            .HasMaxLength(255)
+            .IsRequired();
+
+        construtor.Property(usuario => usuario.PerfilId)
+            .HasColumnName("perfil_id")
+            .HasMaxLength(20)
+            .IsRequired();
+
+        construtor.Property(usuario => usuario.Ativo)
+            .HasColumnName("ativo")
+            .HasColumnType("boolean")
+            .HasDefaultValue(true)
             .IsRequired();
 
         construtor.Property(usuario => usuario.CriadoEmUtc)
             .HasColumnName("criado_em_utc")
             .HasColumnType("timestamp with time zone")
             .IsRequired();
+
+        construtor.Property(usuario => usuario.DataInativacao)
+            .HasColumnName("data_inativacao")
+            .HasColumnType("timestamp with time zone")
+            .IsRequired(false);
 
         construtor.HasIndex(usuario => usuario.Email)
             .IsUnique()
