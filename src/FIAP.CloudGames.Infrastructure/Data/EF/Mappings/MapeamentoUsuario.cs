@@ -1,7 +1,3 @@
-using FIAP.CloudGames.Domain.Users;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 namespace FIAP.CloudGames.Infrastructure.Data.EF.Mappings;
 
 internal sealed class MapeamentoUsuario : IEntityTypeConfiguration<Usuario>
