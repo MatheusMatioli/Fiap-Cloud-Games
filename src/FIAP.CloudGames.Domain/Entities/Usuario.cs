@@ -1,4 +1,4 @@
-namespace FIAP.CloudGames.Domain.Users;
+namespace FIAP.CloudGames.Domain.Entities;
 
 /// <summary>
 /// Representa um usuário persistido pela plataforma.
