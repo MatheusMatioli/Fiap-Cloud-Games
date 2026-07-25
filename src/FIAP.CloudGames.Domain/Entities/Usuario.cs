@@ -1,57 +1,58 @@
+using System;
+
 namespace FIAP.CloudGames.Domain.Entities;
 
-/// <summary>
-/// Representa um usuário persistido pela plataforma.
-/// </summary>
 public sealed class Usuario
 {
-    public const int TamanhoMaximoNome = 120;
-    public const int TamanhoMaximoEmail = 320;
+    public Guid Id { get; private set; }
+    public string Nome { get; private set; }
+    public string CPF { get; private set; }
+    public DateTimeOffset DataNascimento { get; private set; }
+    public string Email { get; private set; }
+    public string SenhaHash { get; private set; }
+    public string PerfilId { get; private set; }
+    public bool Ativo { get; private set; }
+    public DateTimeOffset CriadoEmUtc { get; private set; }
+    public DateTimeOffset? DataInativacao { get; private set; } // Anulável pois nasce ativo
 
-    private Usuario()
+    private Usuario() 
     {
+        Nome = string.Empty;
+        CPF = string.Empty;
+        Email = string.Empty;
+        SenhaHash = string.Empty;
+        PerfilId = string.Empty;
     }
 
-    public Usuario(
-        Guid id,
-        string nome,
-        string email,
-        DateTimeOffset criadoEmUtc)
+    public Usuario(Guid id, string nome, string cpf, DateTimeOffset dataNascimento, string email, string senhaHash, string perfilId)
     {
         if (id == Guid.Empty)
-        {
-            throw new ArgumentException("O identificador do usuário não pode ser vazio.", nameof(id));
-        }
+            throw new ArgumentException("O identificador do usuário não pode ser vazio.");
 
-        ArgumentException.ThrowIfNullOrWhiteSpace(nome);
-        ArgumentException.ThrowIfNullOrWhiteSpace(email);
+        if (string.IsNullOrWhiteSpace(nome))
+            throw new ArgumentException("O nome é obrigatório.");
 
-        if (nome.Length > TamanhoMaximoNome)
-        {
-            throw new ArgumentOutOfRangeException(nameof(nome));
-        }
+        if (string.IsNullOrWhiteSpace(cpf))
+            throw new ArgumentException("O CPF é obrigatório.");
 
-        if (email.Length > TamanhoMaximoEmail)
-        {
-            throw new ArgumentOutOfRangeException(nameof(email));
-        }
+        if (string.IsNullOrWhiteSpace(email))
+            throw new ArgumentException("O e-mail é obrigatório.");
 
-        if (criadoEmUtc.Offset != TimeSpan.Zero)
-        {
-            throw new ArgumentException("A data de criação deve estar em UTC.", nameof(criadoEmUtc));
-        }
+        if (string.IsNullOrWhiteSpace(senhaHash))
+            throw new ArgumentException("A senha é obrigatória.");
+
+        if (string.IsNullOrWhiteSpace(perfilId))
+            throw new ArgumentException("O perfil é obrigatório.");
 
         Id = id;
         Nome = nome;
+        CPF = cpf;
+        DataNascimento = dataNascimento;
         Email = email;
-        CriadoEmUtc = criadoEmUtc;
+        SenhaHash = senhaHash;
+        PerfilId = perfilId;
+        Ativo = true;
+        CriadoEmUtc = DateTimeOffset.UtcNow;
+        DataInativacao = null;
     }
-
-    public Guid Id { get; private set; }
-
-    public string Nome { get; private set; } = string.Empty;
-
-    public string Email { get; private set; } = string.Empty;
-
-    public DateTimeOffset CriadoEmUtc { get; private set; }
 }
