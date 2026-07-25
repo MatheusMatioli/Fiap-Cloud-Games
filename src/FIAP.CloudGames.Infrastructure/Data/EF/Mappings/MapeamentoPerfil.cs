@@ -2,7 +2,7 @@ using FIAP.CloudGames.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FIAP.CloudGames.Infrastructure.Data.Mappings;
+namespace FIAP.CloudGames.Infrastructure.Data.EF.Mappings;
 
 public class MapeamentoPerfil : IEntityTypeConfiguration<Perfil>
 {
@@ -25,14 +25,6 @@ public class MapeamentoPerfil : IEntityTypeConfiguration<Perfil>
         builder.HasIndex(x => x.Nome)
             .IsUnique();
 
-        builder.HasMany(x => x.Usuarios)
-            .WithOne(x => x.Perfil)
-            .HasForeignKey(x => x.PerfilId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        builder.HasMany(x => x.Permissoes)
-            .WithOne(x => x.Perfil)
-            .HasForeignKey(x => x.PerfilId)
-            .OnDelete(DeleteBehavior.Cascade);
+        builder.HasMany<Permissao>();
     }
 }

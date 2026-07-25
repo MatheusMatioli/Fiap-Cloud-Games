@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using FIAP.CloudGames.Domain.Entities;
+
+namespace FIAP.CloudGames.Infrastructure.Data.EF.Mappings;
 
 public class AutorizacaoMapping : IEntityTypeConfiguration<Autorizacao>
 {
@@ -16,15 +19,13 @@ public class AutorizacaoMapping : IEntityTypeConfiguration<Autorizacao>
             .HasMaxLength(200)
             .IsRequired();
 
-        builder.HasOne(x => x.Usuario)
-            .WithMany(x => x.Autorizacoes)
-            .HasForeignKey(x => x.UsuarioId)
-            .OnDelete(DeleteBehavior.Cascade);
+        builder.HasOne<Usuario>()
+                .WithMany()
+                .HasForeignKey(x => x.UsuarioId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-        builder.HasOne(x => x.Jogo)
-            .WithMany(x => x.Autorizacoes)
-            .HasForeignKey(x => x.JogoId)
-            .OnDelete(DeleteBehavior.Cascade);
+        builder.HasOne<Jogo>()
+                .WithMany();
 
         builder.HasIndex(x => new { x.UsuarioId, x.JogoId })
             .IsUnique();

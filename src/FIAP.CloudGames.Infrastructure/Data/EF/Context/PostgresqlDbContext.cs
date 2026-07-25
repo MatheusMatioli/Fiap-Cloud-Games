@@ -1,5 +1,5 @@
-using FIAP.CloudGames.Domain.Users;
 using Microsoft.EntityFrameworkCore;
+using FIAP.CloudGames.Domain.Entities;
 
 namespace FIAP.CloudGames.Infrastructure.Data.EF.Context;
 

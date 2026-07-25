@@ -2,7 +2,7 @@ using FIAP.CloudGames.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FIAP.CloudGames.Infrastructure.Data.Mappings;
+namespace FIAP.CloudGames.Infrastructure.Data.EF.Mappings;
 
 public class MapeamentoLogUsuario : IEntityTypeConfiguration<LogUsuario>
 {
@@ -32,8 +32,8 @@ public class MapeamentoLogUsuario : IEntityTypeConfiguration<LogUsuario>
             .HasColumnType("timestamp with time zone")
             .IsRequired();
 
-        builder.HasOne(x => x.Usuario)
-            .WithMany(x => x.Logs)
+        builder.HasOne<Usuario>()
+            .WithMany()
             .HasForeignKey(x => x.UsuarioId)
             .OnDelete(DeleteBehavior.Cascade);
 

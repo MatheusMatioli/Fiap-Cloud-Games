@@ -1,3 +1,5 @@
+namespace FIAP.CloudGames.Domain.Entities;
+
 public class CategoriaJogo
 {
     public Guid Id {get;set;}

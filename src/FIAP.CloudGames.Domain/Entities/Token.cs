@@ -1,3 +1,5 @@
+namespace FIAP.CloudGames.Domain.Entities;
+
 public class Token
 {
     public Guid Id { get; set; }
