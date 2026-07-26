@@ -1,4 +1,4 @@
-namespace FiapCloudGames.Domain.Entities;
+namespace FIAP.CloudGames.Domain.Entities;
 
 public class LogUsuario
 {
@@ -7,10 +7,9 @@ public class LogUsuario
     public string Descricao { get; private set; }
     public DateTime DataCriacao { get; private set; }
 
-    public Usuario Usuario { get; private set; }
-
     protected LogUsuario()
     {
+        Descricao = string.Empty;
     }
 
     public LogUsuario(Guid usuarioId, string descricao)

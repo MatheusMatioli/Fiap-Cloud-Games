@@ -32,8 +32,8 @@ public class MapeamentoLogJogo : IEntityTypeConfiguration<LogJogo>
             .HasColumnType("timestamp with time zone")
             .IsRequired();
 
-        builder.HasOne(x => x.Jogo)
-            .WithMany(x => x.Logs)
+        builder.HasOne<Jogo>()
+            .WithMany()
             .HasForeignKey(x => x.JogoId)
             .OnDelete(DeleteBehavior.Cascade);
 

@@ -25,13 +25,8 @@ public class MapeamentoPerfil : IEntityTypeConfiguration<Perfil>
         builder.HasIndex(x => x.Nome)
             .IsUnique();
 
-        builder.HasMany(x => x.Usuarios)
-            .WithOne(x => x.Perfil)
-            .HasForeignKey(x => x.PerfilId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        builder.HasMany(x => x.Permissoes)
-            .WithOne(x => x.Perfil)
+        builder.HasMany<Permissao>()
+            .WithOne()
             .HasForeignKey(x => x.PerfilId)
             .OnDelete(DeleteBehavior.Cascade);
     }

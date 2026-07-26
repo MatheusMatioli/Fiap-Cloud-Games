@@ -1,3 +1,5 @@
+namespace FIAP.CloudGames.Domain.Entities;
+
 public class Autorizacao
 {
     public Guid Id { get; set; }

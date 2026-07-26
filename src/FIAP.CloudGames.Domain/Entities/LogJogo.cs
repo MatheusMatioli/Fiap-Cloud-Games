@@ -1,4 +1,4 @@
-namespace FiapCloudGames.Domain.Entities;
+namespace FIAP.CloudGames.Domain.Entities;
 
 public class LogJogo
 {
@@ -7,10 +7,9 @@ public class LogJogo
     public string Descricao { get; private set; }
     public DateTime DataCriacao { get; private set; }
 
-    public Jogo Jogo { get; private set; }
-
     protected LogJogo()
     {
+        Descricao = string.Empty;
     }
 
     public LogJogo(Guid jogoId, string descricao)

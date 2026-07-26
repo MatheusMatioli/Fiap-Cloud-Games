@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using FIAP.CloudGames.Domain.Entities;
+using FIAP.CloudGames.Domain.Users;
 
 namespace FIAP.CloudGames.Infrastructure.Data.EF.Mappings;
 
