@@ -1,4 +1,4 @@
-using FIAP.CloudGames.Application.Users;
+using FIAP.CloudGames.Application.Abstractions.Repositories;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;

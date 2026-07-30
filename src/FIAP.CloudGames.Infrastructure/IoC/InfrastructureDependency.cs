@@ -1,6 +1,6 @@
-using FIAP.CloudGames.Application.Users;
+using FIAP.CloudGames.Application.Abstractions.Repositories;
 using FIAP.CloudGames.Infrastructure.Data.EF.Context;
-using FIAP.CloudGames.Infrastructure.Data.EF.Repositories;
+using FIAP.CloudGames.Infrastructure.Repositories.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

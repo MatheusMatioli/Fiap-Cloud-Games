@@ -1,6 +1,6 @@
 using System.Collections.Concurrent;
-using FIAP.CloudGames.Application.Users;
-using FIAP.CloudGames.Domain.Users;
+using FIAP.CloudGames.Application.Abstractions.Repositories;
+using FIAP.CloudGames.Domain.Identity.Entities;
 
 namespace FIAP.CloudGames.IntegrationTests.Support;
 

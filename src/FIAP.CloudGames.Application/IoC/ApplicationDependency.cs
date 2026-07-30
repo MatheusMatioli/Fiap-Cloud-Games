@@ -1,4 +1,4 @@
-using FIAP.CloudGames.Application.Users;
+using FIAP.CloudGames.Application.Identity.Usuarios;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FIAP.CloudGames.Application.IoC;
