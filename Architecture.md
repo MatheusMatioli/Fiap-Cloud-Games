@@ -9,7 +9,6 @@ A organização modular do sistema é a seguinte:
 ```text
 src/
 │
-├── FIAP.CloudGames.Api
 │
 └── Modules/
     │
